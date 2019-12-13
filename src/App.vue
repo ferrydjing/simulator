@@ -1,32 +1,59 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+  <div id="app" v-cloak>
+    <keep-alive>
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+[v-cloak] {
+  display: none;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+@mixin size {
+  width: 100%;
+  height: 100%;
+}
+html {
+  font-size: 14px;
+  overflow: hidden;
+}
+html,
+body {
+  @include size;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+}
+#app {
+  @include size;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+::-webkit-scrollbar {
+  width: 4px;
+  height: 2px;
+}
+::-webkit-scrollbar-thumb {
+  /* height: 60px; */
+  background-color: #101012;
+  -webkit-border-radius: 10px;
+  outline: #c6ced7 solid 2px;
+  outline-offset: -2px;
+  border: 2px solid #101012;
+}
+::-webkit-scrollbar-thumb {
+  /* height: 60px; */
+  background-color: #101012;
+  -webkit-border-radius: 10px;
+  outline: #101012 solid 2px;
+  outline-offset: -2px;
+  border: 2px solid #101012;
 }
 </style>
