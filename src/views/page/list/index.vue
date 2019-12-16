@@ -4,40 +4,54 @@
     <PageHeader></PageHeader>
     <!-- 顶部工具栏 end-->
     <!-- 内容区 -->
-    <div class="simulator-leaderboard__content">
-      <Leaderboard
-        class="simulator-leaderboar-content__item"
-        :data="popularityData"
-      ></Leaderboard>
-      <Leaderboard
-        class="simulator-leaderboar-content__item"
-        :data="newGameData"
-      ></Leaderboard>
-      <Leaderboard
-        class="simulator-leaderboar-content__item"
-        :data="appointmentData"
-      ></Leaderboard>
-      <Leaderboard
-        class="simulator-leaderboar-content__item"
-        :data="soartData"
-      ></Leaderboard>
-    </div>
+    <transition name="el-fade-in">
+      <div class="simulator-leaderboard__content" v-if="!showLeaderboardDetail">
+        <Leaderboard
+          class="simulator-leaderboar-content__item"
+          :data="popularityData"
+          @showMore="showMore"
+        ></Leaderboard>
+        <Leaderboard
+          class="simulator-leaderboar-content__item"
+          :data="newGameData"
+          @showMore="showMore"
+        ></Leaderboard>
+        <Leaderboard
+          class="simulator-leaderboar-content__item"
+          :data="appointmentData"
+          @showMore="showMore"
+        ></Leaderboard>
+        <Leaderboard
+          class="simulator-leaderboar-content__item"
+          :data="soartData"
+          @showMore="showMore"
+        ></Leaderboard>
+      </div>
+    </transition>
     <!-- 内容区 end -->
+    <transition name="el-fade-in">
+      <LeaderboardDetail
+        v-if="showLeaderboardDetail"
+        @hideLeaderboardDetail="hideLeaderboardDetail"
+      ></LeaderboardDetail>
+    </transition>
   </div>
 </template>
 
 <script>
 import { PageHeader } from '_c'
-import { Leaderboard } from './components'
+import { Leaderboard, LeaderboardDetail } from './components'
 
 export default {
   name: 'LeaderBoard',
   components: {
     PageHeader,
-    Leaderboard
+    Leaderboard,
+    LeaderboardDetail
   },
   data() {
     return {
+      showLeaderboardDetail: false,
       popularityData: [
         {
           uptime: '12月03日',
@@ -197,6 +211,14 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    hideLeaderboardDetail() {
+      this.showLeaderboardDetail = false
+    },
+    showMore() {
+      this.showLeaderboardDetail = true
+    }
   }
 }
 </script>
@@ -207,7 +229,7 @@ export default {
   flex-direction: column;
   height: 100%;
   box-sizing: border-box;
-  padding: 20px 0px 48px 24px;
+  padding: 20px 0px 0px 24px;
   .simulator-leaderboard__content {
     margin-top: 30px;
     flex: 1;

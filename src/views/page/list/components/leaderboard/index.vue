@@ -82,7 +82,9 @@
         ></Icon>
       </div>
     </template>
-    <div class="component-list-leaderboard__more">查看更多 ></div>
+    <div class="component-list-leaderboard__more" @click="showMore">
+      查看更多 >
+    </div>
   </div>
 </template>
 
@@ -130,6 +132,11 @@ export default {
           info: formatNum(fp.get('num', item) || 0) + '人在玩'
         }))
       )(fp.get('data', this) || [])
+    }
+  },
+  methods: {
+    showMore() {
+      this.$emit('showMore', this.cData)
     }
   }
 }
@@ -292,9 +299,9 @@ export default {
     margin: 14px auto 0;
     width: 215px;
     height: 24px;
-    line-height: 24px;
+    line-height: 1.7;
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid rgba(64, 64, 64, 1);
     font-size: 12px;
     color: #75757d;

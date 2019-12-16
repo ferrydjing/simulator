@@ -81,9 +81,9 @@ export default {
     }
   },
   created() {
-    document.oncontextmenu = function(e) {
-      e.preventDefault()
-    }
+    // document.oncontextmenu = function(e) {
+    //   e.preventDefault()
+    // }
   }
 }
 </script>
@@ -157,12 +157,20 @@ export default {
     }
     .local-install-wrap {
       position: absolute;
-      bottom: 49px;
-      left: 40px;
-      width: 100%;
+      display: flex;
+      align-items: center;
+      line-height: 1;
+      bottom: 45px;
+      left: 24px;
+      width: 144px;
+      height: 32px;
       color: #bbbbbf;
       cursor: pointer;
+      &:hover {
+        background: rgb(57, 56, 71);
+      }
       i {
+        margin-left: 16px;
         margin-right: 10px;
       }
     }

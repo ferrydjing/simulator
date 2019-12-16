@@ -1,6 +1,6 @@
-import Banner from "./banner";
-import Recommend from "./recommend";
-import QuickRun from "./quick-run";
-import Laderboard from "./leaderboard";
+import Banner from './banner'
+import Recommend from './recommend'
+import QuickRun from './quick-run'
+import Laderboard from './leaderboard'
 
-export { Banner, Recommend, QuickRun, Laderboard };
+export { Banner, Recommend, QuickRun, Laderboard }

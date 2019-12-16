@@ -13,15 +13,7 @@
         infinite-scroll-disabled="disabled"
       >
         <!-- 内容区顶部 -->
-        <div class="simulator-game-lib-content__header">
-          <ButtonNormal
-            class="simulator-game-lib-content-header__item"
-            :active="activeIndex === index"
-            v-for="(item, index) in titleData"
-            :key="index"
-            >{{ item.txt }}</ButtonNormal
-          >
-        </div>
+        <BtnTab :data="titleData"></BtnTab>
         <!-- 内容区顶部 -->
         <div class="simulator-game-lib-content__statistics">
           <div class="simulator-game-lib-content-statistics__info">
@@ -37,14 +29,10 @@
           </div>
         </div>
         <!-- 内容区 -->
-        <div class="simulator-game-lib-content__show">
-          <GameCard
-            class="simulator-game-lib-content-show__item"
-            v-for="(item, index) in dataList"
-            :key="index"
-            :data="item"
-          ></GameCard>
-        </div>
+        <CardList
+          class="simulator-game-lib-content__show"
+          :data="dataList"
+        ></CardList>
         <!-- 内容区 end -->
         <!-- <p v-if="dataLoading">加载中...</p> -->
         <div class="simulator-game-lib-content__no-more" v-if="noMore">
@@ -72,8 +60,8 @@
 </template>
 
 <script>
-import { PageHeader, ButtonNormal, Icon } from '_c'
-import { GameCard, TxtBtn } from './components'
+import { PageHeader, Icon, BtnTab, CardList } from '_c'
+import { TxtBtn } from './components'
 import { Backtop } from 'element-ui'
 
 export default {
@@ -81,11 +69,11 @@ export default {
 
   components: {
     PageHeader,
-    ButtonNormal,
-    GameCard,
     TxtBtn,
     Backtop,
-    Icon
+    Icon,
+    BtnTab,
+    CardList
   },
   data() {
     return {
@@ -337,15 +325,7 @@ export default {
         }
       }
       .simulator-game-lib-content__show {
-        display: flex;
-        flex-wrap: wrap;
         margin-top: 20px;
-        .simulator-game-lib-content-show__item {
-          margin-bottom: 16px;
-          &:not(:nth-child(4n)) {
-            margin-right: 16px;
-          }
-        }
       }
     }
   }
